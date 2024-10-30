@@ -18,8 +18,16 @@ int prod = 0;
 int n = 0;
 float precio_max = 0.0;
 int codigo_producto_max = 0;
+float precio_min = 0.0;
+int codigo_producto_min = 0;
 
-void precio_maximo(float precios[], int n, int *indice);
+
+
+void precio_maximo(float precios[], int n, int *indice);  //Funcion Precio Maximo
+
+void precio_minimo(float precios[], int n, int *indice);  //Funcion Precio Minimo
+
+
 
 int main(int argc, char *argv[])
 {
@@ -51,11 +59,22 @@ int main(int argc, char *argv[])
 
     printf("\nEl precio máximo es: %.2f, correspondiente al producto con código: %d\n", precio_max, codigo_producto_max);
 
-    return 0;
+    
+    int indice_min = 0;  
+    precio_minimo(precios, 5, &indice_min);
+    codigo_producto_min = productos_precio[indice_min][0];
+    precio_min = precios[indice_min];
+    
+    printf("\nEl precio minimo es: %.2f, correspondiente al producto con código: %d\n", precio_min, codigo_producto_min);
+
 
 
     return 0;
 }
+
+
+
+ //--------------------FUNCION PRECIO MAXIMO------------------------------------------------------------------------------------------
 
 void precio_maximo(float precios[], int n, int *indice)
 {
@@ -72,3 +91,25 @@ void precio_maximo(float precios[], int n, int *indice)
                                   //y *indice se actualiza a i y almacena en donde se encuentra este nuevo precio maximo.
     }
 }
+
+
+//--------------------FUNCION PRECIO MINIMO------------------------------------------------------------------------------------------
+
+void precio_minimo(float precios[], int n, int *indice) 
+{
+    float min = precios[0];       
+    *indice = 0;                  
+    for (int i = 1; i < n; i++)
+    {
+        if (precios[i] < min)    //Solo se cambia el signo para que muestre el precio minimo
+        {
+            min = precios[i];
+            *indice = i;
+        }                         
+    }
+}
+
+
+
+
+
