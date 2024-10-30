@@ -20,6 +20,8 @@ float precio_max = 0.0;
 int codigo_producto_max = 0;
 float precio_min = 0.0;
 int codigo_producto_min = 0;
+float precio_prom = 0.0;
+int precio_superior_promedio = 0;
 
 
 
@@ -27,9 +29,17 @@ void precio_maximo(float precios[], int n, int *indice);  //Funcion Precio Maxim
 
 void precio_minimo(float precios[], int n, int *indice);  //Funcion Precio Minimo
 
+void calcular_precio_promedio(float precios[], int n);
+
+void precio_sup_promedio(float precios[], int n);
 
 
-int main(int argc, char *argv[])
+
+
+//--------------------FUNCION MAIN------------------------------------------------------------------------------------------
+
+
+int main(int argc, char *argv[]) 
 {
     for (prod = 0; prod < 5; prod++)
     {
@@ -66,6 +76,14 @@ int main(int argc, char *argv[])
     precio_min = precios[indice_min];
     
     printf("\nEl precio minimo es: %.2f, correspondiente al producto con código: %d\n", precio_min, codigo_producto_min);
+
+    
+    calcular_precio_promedio(precios, 5);
+    printf("\nEl precio promedio es: %.2f\n", precio_prom);
+
+    // Contar productos con precio superior al promedio
+    precio_sup_promedio(precios, 5);
+    printf("Cantidad de productos con precio superior al promedio: %d\n", precio_superior_promedio);
 
 
 
@@ -109,6 +127,33 @@ void precio_minimo(float precios[], int n, int *indice)
     }
 }
 
+
+//--------------------FUNCION CALCULAR PROMEDIO-----------------------------------------------------------------------------
+
+void calcular_precio_promedio(float precios[], int n){
+    float suma = 0.0;
+    for (int i = 0; i < n; i++)
+    {
+        suma += precios[i];
+    }
+    precio_prom = suma / n;
+}
+
+
+//--------------------FUNCION PRECIO SUPERIOR AL PROMEDIO-----------------------------------------------------------------------------
+
+
+//Cantidad de artículos con precio superior al precio promedio
+void precio_sup_promedio(float precios[], int n) 
+{
+    precio_superior_promedio = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (precios[i] > precio_prom){
+        precio_superior_promedio ++;
+        }                     
+    }
+}
 
 
 
