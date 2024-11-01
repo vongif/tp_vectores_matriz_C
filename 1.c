@@ -22,7 +22,10 @@ float precio_min = 0.0;
 int codigo_producto_min = 0;
 float precio_prom = 0.0;
 int precio_superior_promedio = 0;
-
+int precio_sup_a_100 = 0; 
+aux=0;
+y=0;
+i=0;
 
 
 void precio_maximo(float precios[], int n, int *indice);  //Funcion Precio Maximo
@@ -32,6 +35,10 @@ void precio_minimo(float precios[], int n, int *indice);  //Funcion Precio Minim
 void calcular_precio_promedio(float precios[], int n);
 
 void precio_sup_promedio(float precios[], int n);
+
+void precio_sup_100(float precios[], int n);
+
+void precio_ascendente(float precios[], int n);
 
 
 
@@ -86,10 +93,20 @@ int main(int argc, char *argv[])
     printf("Cantidad de productos con precio superior al promedio: %d\n", precio_superior_promedio);
 
 
+    precio_sup_100(precios, 5);
+    printf("Cantidad de productos con precio superior a $100: %d\n", precio_sup_a_100);
+
+
+    
+    orden_ascendente(precios, 5);
+	int i=0;
+	for(i=0;i<5;i++){
+		printf("El valor de la pos %d es %.2f\n",i,precios[i]);
+	}
+
 
     return 0;
 }
-
 
 
  //--------------------FUNCION PRECIO MAXIMO------------------------------------------------------------------------------------------
@@ -109,7 +126,6 @@ void precio_maximo(float precios[], int n, int *indice)
                                   //y *indice se actualiza a i y almacena en donde se encuentra este nuevo precio maximo.
     }
 }
-
 
 //--------------------FUNCION PRECIO MINIMO------------------------------------------------------------------------------------------
 
@@ -140,10 +156,8 @@ void calcular_precio_promedio(float precios[], int n){
 }
 
 
-//--------------------FUNCION PRECIO SUPERIOR AL PROMEDIO-----------------------------------------------------------------------------
+//--------------------FUNCION PRECIO SUPERIOR AL PROMEDIO--------------------------------------------------------------------
 
-
-//Cantidad de artículos con precio superior al precio promedio
 void precio_sup_promedio(float precios[], int n) 
 {
     precio_superior_promedio = 0;
@@ -156,5 +170,33 @@ void precio_sup_promedio(float precios[], int n)
 }
 
 
+//--------------------FUNCION PRECIO SUPERIOR A 100---------------------------------------------------------------------------
 
+void precio_sup_100(float precios[], int n) 
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (precios[i] > 100){
+        precio_sup_a_100 ++;
+        }                     
+    }
+}
+
+
+//--------------------FUNCION ARTICULOS PRECIOS ASCENDENTES-------------------------------------------------------------------
+
+
+void orden_ascendente(float precios[], int n){
+    
+    //Ejemplo de ordenamiento por burbujeo
+	for(i=0;i<n-1;i++){ 
+		for(y=0;y<n-i-1;y++){     
+			if (precios[i]>precios[y+1]){ 
+				aux=precios[y];
+				precios[y]=precios[y+1];
+				precios[y+1]=aux;
+			}
+        }    
+    }
+}
 
