@@ -7,13 +7,13 @@ numeración arábiga*/
 #include <stdio.h>
 #include <stdlib.h>
 
-int romanoadecimal(char numeros_rom[i]);
+char romanoadecimal(char numeros_rom[]);
 
 
 
 int main(int argc, char *argv[]){
 
-    char numeros_rom[2][11];
+    char numeros_rom[10][11];
     char i;   
        
 
@@ -21,7 +21,8 @@ int main(int argc, char *argv[]){
     {
         for (int j = 0; j < 11; j++) {
             numeros_rom[i][j] = '\0';  
-        }    
+        } 
+        
     }
     for (i = 0; i < 10; i++) 
     {
@@ -35,58 +36,47 @@ int main(int argc, char *argv[]){
         printf("Los numeros ingresados son: %s \n", numeros_rom[i]);
     }         
 
-    printf("Los numeros romanos ingresados y sus equivalentes arábigos son:\n");
-    for (i = 0; i < 10; i++) {
+
+    printf("\nLos números romanos ingresados y sus equivalentes arábigos son:\n");
+    for (int i = 0; i < 10; i++) {
         int resultado = romanoadecimal(numeros_rom[i]);
-        printf("%s -> %d\n", numeros_rom[i], resultado);
+        if (resultado != -1) { // Si el resultado es válido
+            printf("%s -> %d\n", numeros_rom[i], resultado);
+        } else {
+            printf("%s -> Número romano no válido\n", numeros_rom[i]);
+        }
     }
+    
+
 
     return 0;
 } 
 
 
 
-int romanoadecimal(char numeros_rom[]){
+char romanoadecimal(char numeros_rom[]){
     int total = 0;
     int i = 0;
     
-    
-    while (numeros_rom[i] != '\0')
-    {
-        if (numeros_rom[i] == I)
-        {
-            int total = 1;
-        }
-        if (numeros_rom[i] == II)
-        {
-            int total = 2;
-        }
-        if (numeros_rom[i] == III)
-        {
-            int total = 3;
-        }
-        if (numeros_rom[i] == IV)
-        {
-            int total = 4;
-        }
-        if (numeros_rom[i] == V)
-        {
-            int total = 5;
-        }
-        if (numeros_rom[i] == X)
-        {
-            int total = 10;
-        }
-        if (numeros_rom[i] == L)
-        {
-            int total = 50;
-        }
-        if (numeros_rom[i] == C)
-        {
-            int total = 100;
-        }
+    while (numeros_rom[i]){
 
+        switch (numeros_rom[i]) {
+            case 'I': total += 1; 
+            break;
+            case 'V': total += 5; 
+            break;
+            case 'X': total += 10; 
+            break;
+            case 'L': total += 50; 
+            break;
+            case 'C': total += 100; 
+            break;
+            default:
+                return -1; 
     }
+    i++;
+    }
+
     return total;
     
 

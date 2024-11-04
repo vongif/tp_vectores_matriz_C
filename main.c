@@ -25,9 +25,6 @@ int prod = 0;
         printf("Producto: %d, Codigo: %d,  Precio: %.2f\n", prod + 1, productos_precio[prod][0], precios[prod]);
     }
 
-
-
-
     return 0;
 
 }
