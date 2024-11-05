@@ -48,7 +48,6 @@ int main(int argc, char *argv[]){
     }
     
 
-
     return 0;
 } 
 
@@ -72,10 +71,11 @@ char romanoadecimal(char numeros_rom[]){
             case 'C': total += 100; 
             break;
             default:
-                return -1; 
+                return -1;  
     }
-    i++;
+    i++;    
     }
+    
 
     return total;
     

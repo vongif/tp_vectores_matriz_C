@@ -28,9 +28,11 @@ y=0;
 i=0;
 
 
-void precio_maximo(float precios[], int n, int *indice);  //Funcion Precio Maximo
+//Funciones----------------------------------------------------------------------------------------------------------------
 
-void precio_minimo(float precios[], int n, int *indice);  //Funcion Precio Minimo
+void precio_maximo(float precios[], int n, int *indice);  
+
+void precio_minimo(float precios[], int n, int *indice);  
 
 void calcular_precio_promedio(float precios[], int n);
 
